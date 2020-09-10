@@ -11,10 +11,10 @@ class EventGamerSchema extends Schema {
       table.integer("event_id").unsigned()
       table.timestamps()
 
-      // table.foreign('event_id')
-      //   .references('events.event_id')
-      //   .onDelete('CASCADE') // ON DELETE CASCADE
-      //   .onUpdate('CASCADE') // ON UPDATE CASCADE
+      table.foreign('event_id')
+        .references('events.event_id')
+        .onDelete('CASCADE') // ON DELETE CASCADE
+        .onUpdate('CASCADE') // ON UPDATE CASCADE
     })
   }
 
