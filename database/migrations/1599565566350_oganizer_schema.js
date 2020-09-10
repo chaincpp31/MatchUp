@@ -5,8 +5,9 @@ const Schema = use('Schema')
 
 class OganizerSchema extends Schema {
   up () {
-    this.create('oganizers', (table) => {
-      table.increments("oganizer_id")
+    this.create('organizers', (table) => {
+      table.increments("organizer_id")
+      table.string("name").notNullable()
       table.string("user_name").notNullable()
       table.string("password").notNullable()
       table.string("first_name").notNullable()
@@ -20,7 +21,7 @@ class OganizerSchema extends Schema {
   }
 
   down () {
-    this.drop('oganizers')
+    this.drop('organizers')
   }
 }
 
