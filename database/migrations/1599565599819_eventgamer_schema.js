@@ -7,14 +7,14 @@ class EventGamerSchema extends Schema {
   up () {
     this.create('eventgamers', (table) => {
       table.increments()
-      table.integer("gamer_id").unique().unsigned()
-      table.integer("event_id").unsigned()
+      table.string("gamer_id")
+      table.string("event_id")
       table.timestamps()
 
-      // table.foreign('event_id')
-      //   .references('events.event_id')
-      //   .onDelete('CASCADE') // ON DELETE CASCADE
-      //   .onUpdate('CASCADE') // ON UPDATE CASCADE
+      table.foreign('event_id')
+        .references('events.event_id')
+        .onDelete('CASCADE') // ON DELETE CASCADE
+        .onUpdate('CASCADE') // ON UPDATE CASCADE
     })
   }
 

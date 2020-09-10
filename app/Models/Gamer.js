@@ -18,8 +18,8 @@ class Gamer extends Model {
 
     Events(){
         return this
-        .belongsToMany('App/Model/Event')
-        .pivotModel('App/Model/Gamer') 
+        .belongsToMany('App/Models/Event')
+        .pivotModel('App/Models/Gamer') 
     }
 }
 
