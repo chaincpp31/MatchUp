@@ -7,6 +7,7 @@ class GamerSchema extends Schema {
   up () {
     this.create('gamers', (table) => {
       table.increments("gamer_id")
+      table.string("name").notNullable()
       table.string("user_name").notNullable()
       table.string("password").notNullable()
       table.string("first_name").notNullable()
