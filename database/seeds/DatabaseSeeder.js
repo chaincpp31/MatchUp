@@ -22,6 +22,10 @@ class DatabaseSeeder {
     const organizers = await Factory
     .model('App/Models/Organizer')
     .createMany(100)
+
+    // const events = await Factory
+    // .model('App/Models/Event')
+    // .createMany(50)
   }
 }
 
