@@ -1,5 +1,7 @@
 'use strict'
 
+const { route } = require('@adonisjs/framework/src/Route/Manager')
+
 /*
 |--------------------------------------------------------------------------
 | Routes
@@ -18,4 +20,10 @@ const Route = use('Route')
 
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
+})
+
+Route.group(() =>{
+  Route.resource('/gamers','GamerController')
+  Route.resource('/organizers','OrganizerController')
+  Route.resource('/events','EventController')
 })
