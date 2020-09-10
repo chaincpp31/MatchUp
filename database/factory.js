@@ -1,5 +1,7 @@
 'use strict'
 
+const { first } = require('../app/Models/Gamer')
+
 /*
 |--------------------------------------------------------------------------
 | Factory
@@ -15,7 +17,18 @@
 const Factory = use('Factory')
 
 Factory.blueprint('App/Models/Gamer', (faker) => {
-    
+    return{
+        name : faker.name(),
+        user_name : faker.name(),
+        password : faker.word({length : 8}),
+        first_name : faker.first(),
+        last_name : faker.last(),
+        email : faker.email(),
+        phone_number : faker.phone(),
+        age : faker.age(),
+        birth_day : faker.date()
+
+    }
 })
 // const Factory = use('Factory')
 
