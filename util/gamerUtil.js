@@ -28,38 +28,40 @@ class GamerUtil{
             .fetch()
             .then(response => response.first())
 }
-async create (gamerInstance, references) {
-    const { gamer_id } = await this._Gamer.create(gamerInstance)
-    const gamer = this._Gamer
-      .query()
-      .where('gmaer_id', gamer_id)
-          
-    return this._withReference(gamer, references)
-      .fetch()
-      .then(response => response.first())
+  async create (gamerInstance, references) {
+      const { gamer_id } = await this._Gamer.create(gamerInstance.body)
+      const gamer = this._Gamer
+        .query()
+        .where('gamer_id', gamer_id)
+      return this._withReference(gamer, references)
+        .fetch()
+        .then(response => response.first())
+    }
+    
+    async update(gamerInstance,references){
+      const { id } = gamerInstance.params
+      let gamers = await this._Gamer.find(id)
+      if(!gamers){
+          return {status : 500 ,error : `Not Found ${id}` , data : undefined};
+      }
+      gamers.merge(gamerInstance.body)
+      await gamers.save();
+  
+      gamers = this._Gamer.query().where({gamer_id : id})
+      return this._withReference(gamers,references).fetch().then(response => response.first())
+  }
+    async deleteById(gamerInstance){
+      const { id } = gamerInstance.params
+      const gamers = await this._Gamer.find(id)
+
+      if(!gamers){
+          return {status : 500 ,error : `Not Found ${id}` , data : undefined};
+      }
+      gamers.delete()
+      await gamers.save();
+
+      return {status : 200 ,error : undefined , data : 'complete'};
   }
     
-    async update(references,body,params){
-        const { id } = params
-        const { name,user_name,first_name,last_name,email,phone_number,age,birth_day } = body
-        const gamerId = await this._Gamer
-          .where({ gamer_id: id })
-          .update({ name,user_name,first_name,last_name,email,phone_number,age,birth_day })
-        const gamers = this._Gamer
-            .query()
-            .where({ gamer_id:gamerId })
-        return this._withReference(gamers,references) 
-                .fetch()
-                .then(response => response.first())
-    }
-    async destroy(references){
-        const { id } = params
-        const gamers = await this._Gamer.query()
-        .where({ gamer_id: id })
-        .delete()
-    return this._withReference(gamers,references) 
-            .fetch()
-            .then(response => response.first())
-    }
 }
 module.exports = GamerUtil 
