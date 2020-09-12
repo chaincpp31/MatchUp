@@ -17,11 +17,11 @@ class DatabaseSeeder {
   async run () {
     const gamers = await Factory
       .model('App/Models/Gamer')
-      .createMany(100)
+      .createMany(10)
 
     const organizers = await Factory
     .model('App/Models/Organizer')
-    .createMany(100)
+    .createMany(10)
 
     const events = await Factory
     .model('App/Models/Event')
