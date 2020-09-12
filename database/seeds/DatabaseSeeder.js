@@ -28,18 +28,18 @@ class DatabaseSeeder {
     .makeMany(50)
 
     let currentEventIndex = 0;
-    const eventPerIteration = 0;
+    const eventPerIteraction = 0;
 
     for (const event of events){
       const selectedEvents = events.slice(
         currentEventIndex,
-        currentEventIndex + eventPerIteration
+        currentEventIndex + eventPerIteraction
       )
       await event
       .events()
       .saveMany(selectedEvents)
 
-      currentEventIndex += eventPerIteration
+      currentEventIndex += eventPerIteraction
     }
   }
 }
