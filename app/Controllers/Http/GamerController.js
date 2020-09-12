@@ -25,22 +25,22 @@ class GamerController {
     async store({ request }) {
         const { name, gamer_id } = request.body
         const { references } = request.qs
-        const gamerUtil = new GamerjectUtil(Gamer)
-        const gamer = await gamerUtil.create({ name, gamer_id,references}, references)
+        const gamerUtil = new GamerUtil(Gamer)
+        const gamer = await gamerUtil.create(request,references)
         return { stauts: 200, error: undefined, data:gamer }
       }
 
     async update({ request }) {
-        const { body, params } = request
+        const { references = undefined } = request.qs
         const gamerUtil = new GamerUtil(Gamer)
-        const gamer = await gamerUtil.update(body,params,references)
+        const gamer = await gamerUtil.update(request,references)
         return { status: 200, error: undefined, data: gamer }
       }
 
       async destroy({ request }) {
-        const { id } = request.params
+        const { references=undefined } = request.qs
         const gamerUtil = new GamerUtil(Gamer)
-        const gamer = await gamerUtil.destroy(id,gamers,references)
+        const gamer = await gamerUtil.deleteById(request,references)
         return{ status: 200, error: undefined, data: gamer}
     }
 }
