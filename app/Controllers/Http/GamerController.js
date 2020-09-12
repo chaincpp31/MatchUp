@@ -1,6 +1,8 @@
 'use strict'
 const Database = use('Database')
 const Gamer = use('App/Models/Gamer')
+const Hash = use('Hash')
+const GamerUtil = use('../../../util/gamerjectUtil')
 const GamerUtil = require("../../../util/gamerUtil")
 const gamerValidator = require("../../../service/GamerValidator")
 
