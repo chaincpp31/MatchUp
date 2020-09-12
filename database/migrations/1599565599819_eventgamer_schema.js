@@ -7,8 +7,8 @@ class EventGamerSchema extends Schema {
   up () {
     this.create('eventgamers', (table) => {
       table.increments()
-      table.string("gamer_id")
-      table.string("event_id")
+      table.integer("gamer_id").unsigned()
+      table.integer("event_id").unsigned()
       table.timestamps()
 
       table.foreign('event_id')

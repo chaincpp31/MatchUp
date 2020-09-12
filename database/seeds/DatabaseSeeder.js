@@ -23,9 +23,24 @@ class DatabaseSeeder {
     .model('App/Models/Organizer')
     .createMany(100)
 
-    // const events = await Factory
-    // .model('App/Models/Event')
-    // .createMany(50)
+    const events = await Factory
+    .model('App/Models/Event')
+    .makeMany(50)
+
+    let currentEventIndex = 0;
+    const eventPerIteration = 0;
+
+    for (const event of events){
+      const selectedEvents = events.slice(
+        currentEventIndex,
+        currentEventIndex + eventPerIteration
+      )
+      await event
+      .events()
+      .saveMany(selectedEvents)
+
+      currentEventIndex += eventPerIteration
+    }
   }
 }
 

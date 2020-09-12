@@ -43,11 +43,12 @@ Factory.blueprint('App/Models/Organizer', (faker) => {
         birth_day: faker.date()
     }
 })
-// Factory.blueprint('App/Models/Event',(faker) =>{
-//     return{
-
-//     }
-// })
+Factory.blueprint('App/Models/Event',(faker) =>{
+    return{
+        name_event: faker.sentence(),
+        date_of_event: faker.date()
+    }
+})
 // const Factory = use('Factory')
 
 // Factory.blueprint('App/Models/User', (faker) => {

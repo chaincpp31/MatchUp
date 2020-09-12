@@ -1,6 +1,7 @@
 'use strict'
 const Database = use('Database')
 const Gamer = use('App/Models/Gamer')
+const Hash = use('Hash')
 const GamerUtil = use('../../../util/gamerjectUtil')
 class GamerController {
     async index({ request }){
