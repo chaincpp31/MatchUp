@@ -14,8 +14,9 @@ class GamerSchema extends Schema {
       table.string("last_name").notNullable()
       table.string("email").notNullable()
       table.string("phone_number").notNullable()
-      table.integer("age").unsigned().notNullable()
+      table.integer("age").notNullable()
       table.string("birth_day")
+      table.integer("event_id").unsigned()
       table.timestamps()
     })
   }
