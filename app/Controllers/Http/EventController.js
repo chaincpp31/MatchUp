@@ -1,6 +1,6 @@
 'use strict'
-const Event = use('App/Models/Gamer')
-const EventUtil = require("../../../util/organizerUtil")
+const Event = use('App/Models/Event')
+const EventUtil = require("../../../util/eventUtil")
 class EventController {
     async index({ request }){
         const { references } = request.qs
