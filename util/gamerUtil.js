@@ -1,3 +1,4 @@
+const Gamer = require("../app/Models/Gamer")
 // const Subject = use("App/Models/Subject")
 const gamerValidator = require("../service/GamerValidator")
 class GamerUtil{
@@ -20,7 +21,7 @@ class GamerUtil{
         return this._withReference(gamer,references).fetch()
         }        
     getById(gamerId,references){
-        const validated = this._validation
+        this._validation(Gamer)
         const gamer = this._Gamer
             .query()
             .where('gamer_id',gamerId)
@@ -53,15 +54,20 @@ class GamerUtil{
     async deleteById(gamerInstance){
       const { id } = gamerInstance.params
       const gamers = await this._Gamer.find(id)
-
       if(!gamers){
           return {status : 500 ,error : `Not Found ${id}` , data : undefined};
       }
       gamers.delete()
       await gamers.save();
-
       return {status : 200 ,error : undefined , data : 'complete'};
+  } 
+  async selectByID(gamerInstance,references){
+        const { gamer_id } = await this._Gamer.create(gamerInstance.body)
+        const gamer = this._Gamer
+                .query()
+                .where('gamer_id',gamer_id)
+        return this._withReference(gamer,references).fetch()
   }
-    
+  
 }
 module.exports = GamerUtil 
