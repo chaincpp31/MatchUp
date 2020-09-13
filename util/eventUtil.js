@@ -1,5 +1,5 @@
 // const Subject = use("App/Models/Subject")
-const gamerValidator = require("../service/GamerValidator")
+const eventValidator = require("../service/EventValidator")
 class EventUtil{
     _withReference (instance, references) {
         if (references) {
@@ -8,19 +8,20 @@ class EventUtil{
         }
         return instance
     }
-    _validation(gamerValidator){
+    _validation(eventValidator){
         if (validatedData.error)
       return { status: 422, error: validatedData.error, data: undefined }
     }
     constructor(EventModel){
         this._Event = EventModel
     }
+
     getAll(references){
         const event = this._Event.query()
         return this._withReference(event,references).fetch()
         }        
     getById(eventId,references){
-        const validated = this._validation
+        this._validation
         const event = this._Event
             .query()
             .where('event_id',eventId)
@@ -58,10 +59,10 @@ class EventUtil{
           return {status : 500 ,error : `Not Found ${id}` , data : undefined};
       }
       events.delete()
-      await event.save();
+      await events.save();
 
       return {status : 200 ,error : undefined , data : 'complete'};
   }
     
 }
-module.exports = GamerUtil 
+module.exports = EventUtil 
