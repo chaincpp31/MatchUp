@@ -1,8 +1,6 @@
 'use strict'
-const Database = use('Database')
 const Gamer = use('App/Models/Gamer')
 const GamerUtil = require("../../../util/gamerUtil")
-const gamerValidator = require("../../../service/GamerValidator")
 
 class GamerController {
     async index({ request }){
@@ -27,7 +25,7 @@ class GamerController {
         const { references } = request.qs
         const gamerUtil = new GamerUtil(Gamer)
         const gamer = await gamerUtil.create(request,references)
-        return { stauts: 200, error: undefined, data:gamer }
+        return { status: 200, error: undefined, data:gamer }
       }
 
     async update({ request }) {
@@ -42,6 +40,6 @@ class GamerController {
         const gamerUtil = new GamerUtil(Gamer)
         const gamer = await gamerUtil.deleteById(request,references)
         return{ status: 200, error: undefined, data: gamer}
-    }
+      }
 }
 module.exports = GamerController
