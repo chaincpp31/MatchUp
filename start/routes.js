@@ -26,4 +26,6 @@ Route.group(() =>{
   Route.resource('/gamers','GamerController')
   Route.resource('/organizers','OrganizerController')
   Route.resource('/events','EventController')
+  Route.post('/login','AuthController.login')
+
 })
