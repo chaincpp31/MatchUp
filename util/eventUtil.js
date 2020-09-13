@@ -21,7 +21,7 @@ class EventUtil{
         return this._withReference(event,references).fetch()
         }        
     getById(eventId,references){
-        this._validation
+        this._validation(eventId)
         const event = this._Event
             .query()
             .where('event_id',eventId)
