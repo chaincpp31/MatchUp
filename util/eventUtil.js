@@ -12,6 +12,14 @@ class EventUtil{
         if (validatedData.error)
       return { status: 422, error: validatedData.error, data: undefined }
     }
+    async _organizer(organizerId){
+      const { id } = organizerId.params 
+      let organizer = await this._Organizer.find(id)
+      if(!organizer){
+        return {status : 500 ,error : `Not Found ${id} on User organizer` , data : undefined};
+    }
+    }
+
     constructor(EventModel){
         this._Event = EventModel
     }
@@ -31,12 +39,13 @@ class EventUtil{
 }
   async create (eventInstance, references) {
       const { event_id } = await this._Event.create(eventInstance.body)
+      this._organizer(event_id)
       const event = this._Event
         .query()
         .where('event_id', event_id)
-      return this._withReference(event, references)
+      return this._withReference(event,references) 
         .fetch()
-        .then(response => response.first())
+        .then(response => response.first())  
     }
     
     async update(eventInstance,references){
@@ -54,7 +63,6 @@ class EventUtil{
     async deleteById(eventInstance){
       const { id } = eventInstance.params
       const events = await this._Event.find(id)
-
       if(!events){
           return {status : 500 ,error : `Not Found ${id}` , data : undefined};
       }
