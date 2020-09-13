@@ -13,6 +13,13 @@ class GamerUtil{
         if (validatedData.error)
       return { status: 422, error: validatedData.error, data: undefined }
     }
+    async _event(eventId){
+      const { id } = eventId.params 
+      let event = await this._Organizer.find(id)
+      if(!event){
+        return {status : 500 ,error : `Not Found ${id} Event` , data : undefined};
+    }
+  }
     constructor(GamerModel){
         this._Gamer = GamerModel
     }
@@ -41,6 +48,7 @@ class GamerUtil{
     
     async update(gamerInstance,references){
       const { id } = gamerInstance.params
+      this._event(id)
       let gamers = await this._Gamer.find(id)
       if(!gamers){
           return {status : 500 ,error : `Not Found ${id}` , data : undefined};
@@ -61,13 +69,5 @@ class GamerUtil{
       await gamers.save();
       return {status : 200 ,error : undefined , data : 'complete'};
   } 
-  async selectByID(gamerInstance,references){
-        const { gamer_id } = await this._Gamer.create(gamerInstance.body)
-        const gamer = this._Gamer
-                .query()
-                .where('gamer_id',gamer_id)
-        return this._withReference(gamer,references).fetch()
-  }
-  
 }
 module.exports = GamerUtil 
