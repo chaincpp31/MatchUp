@@ -27,6 +27,7 @@ class DatabaseSeeder {
     .model('App/Models/Event')
     .makeMany(50)
 
+
     let currentEventIndex = 0;
     const eventPerIteraction = 2;
 
@@ -40,6 +41,21 @@ class DatabaseSeeder {
       .saveMany(selectedEvents)
 
       currentEventIndex += eventPerIteraction
+    }
+
+      let currentGamerIndex = 0;
+      const gamerPerIteraction = 2;
+
+      for (const gamer of gamers) {
+        const selectedGamers = events.slice(
+          currentGamerIndex,
+          currentGamerIndex + gamerPerIteraction
+        )
+        await gamer
+          .events()
+          .saveMany(selectedGamers)
+
+        currentGamerIndex += gamerPerIteraction
     }
   }
 }
