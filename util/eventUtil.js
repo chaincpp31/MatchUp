@@ -1,5 +1,5 @@
 // const Subject = use("App/Models/Subject")
-const gamerValidator = require("../service/GamerValidator")
+const eventValidator = require("../service/EventValidator")
 class EventUtil{
     _withReference (instance, references) {
         if (references) {
@@ -8,19 +8,28 @@ class EventUtil{
         }
         return instance
     }
-    _validation(gamerValidator){
+    _validation(eventValidator){
         if (validatedData.error)
       return { status: 422, error: validatedData.error, data: undefined }
     }
+    async _organizer(organizerId){
+      const { id } = organizerId.params 
+      let organizer = await this._Organizer.find(id)
+      if(!organizer){
+        return {status : 500 ,error : `Not Found ${id} on User organizer` , data : undefined};
+    }
+    }
+
     constructor(EventModel){
         this._Event = EventModel
     }
+
     getAll(references){
         const event = this._Event.query()
         return this._withReference(event,references).fetch()
         }        
     getById(eventId,references){
-        const validated = this._validation
+        this._validation(eventId)
         const event = this._Event
             .query()
             .where('event_id',eventId)
@@ -30,12 +39,13 @@ class EventUtil{
 }
   async create (eventInstance, references) {
       const { event_id } = await this._Event.create(eventInstance.body)
+      this._organizer(event_id)
       const event = this._Event
         .query()
         .where('event_id', event_id)
-      return this._withReference(event, references)
+      return this._withReference(event,references) 
         .fetch()
-        .then(response => response.first())
+        .then(response => response.first())  
     }
     
     async update(eventInstance,references){
@@ -53,15 +63,14 @@ class EventUtil{
     async deleteById(eventInstance){
       const { id } = eventInstance.params
       const events = await this._Event.find(id)
-
       if(!events){
           return {status : 500 ,error : `Not Found ${id}` , data : undefined};
       }
       events.delete()
-      await event.save();
+      await events.save();
 
       return {status : 200 ,error : undefined , data : 'complete'};
   }
     
 }
-module.exports = GamerUtil 
+module.exports = EventUtil 

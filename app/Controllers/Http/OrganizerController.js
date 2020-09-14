@@ -1,5 +1,5 @@
 'use strict'
-const Organizer = use('App/Models/Gamer')
+const Organizer = use('App/Models/Organizer')
 const OrganizerUtil = require("../../../util/organizerUtil")
 class OrganizerController {
     async index({ request }){

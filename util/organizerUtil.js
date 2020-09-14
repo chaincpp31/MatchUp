@@ -1,5 +1,5 @@
 // const Subject = use("App/Models/Subject")
-const gamerValidator = require("../service/GamerValidator")
+const organizerValidator = require("../service/OrganizerValidator")
 class OrganizerUtil{
     _withReference (instance, references) {
         if (references) {
@@ -10,13 +10,11 @@ class OrganizerUtil{
     }
 
 
-    _validation(gamerValidator){
+    _validation(organizerValidator){
         if (gamerValidator.error){
           return { status: 422, error: gamerValidator.error, data: undefined }
         }
     }
-
-
     constructor(OrganizerModel){
         this._Organizer = OrganizerModel
     }
