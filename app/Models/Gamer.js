@@ -31,6 +31,9 @@ class Gamer extends Model {
         .belongsToMany('App/Models/Event')
         .pivotModel('App/Models/Gamer') 
     }
+    events() {
+        return this.hasMany('App/Models/Event')
+    }
 }
 
 module.exports = Gamer
