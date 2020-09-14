@@ -5,7 +5,7 @@ const Model = use('Model')
 
 class Organizer extends Model {
     static get primaryKey(){
-        return 'organize_id'
+        return 'organizer_id'
     }
 
     static get createdAtColumn(){
@@ -16,8 +16,12 @@ class Organizer extends Model {
         return null ;
     }
 
-    gamers(){
+    events(){
         return this.hasMany('App/Models/Event')
+    }
+
+    gamers(){
+        return this.hasMany('App/Models/Gamer')
     }
 
 }
