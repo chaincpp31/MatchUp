@@ -20,7 +20,7 @@ Factory.blueprint('App/Models/Gamer', (faker) => {
     return{
         name : faker.name(),
         user_name : faker.name(),
-        password : faker.word({length : 8}),
+        password : await HashChangeEvent.make(faker.password({length : 8})),
         first_name : faker.first(),
         last_name : faker.last(),
         email : faker.email(),
@@ -34,7 +34,7 @@ Factory.blueprint('App/Models/Organizer', (faker) => {
     return{
         name: faker.name(),
         user_name: faker.name(),
-        password: faker.word({ length: 8 }),
+        password: await HashChangeEvent.make(faker.password({ length: 8 })),
         first_name: faker.first(),
         last_name: faker.last(),
         email: faker.email(),
