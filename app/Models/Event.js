@@ -19,6 +19,9 @@ class Event extends Model {
     gamers(){
         return this.hasMany('App/Models/Gamer')
     }
+    // organizers(){
+    //     return this.belongsToMany('App/Models/Organizer')
+    // }
 }
 
 module.exports = Event
