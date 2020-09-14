@@ -30,14 +30,14 @@ class DatabaseSeeder {
     let currentEventIndex = 0;
     const eventPerIteraction = 2;
 
-    for (const event of events){
-      const selectedOrganizers = organizers.slice(
+    for (const organizer of organizers){
+      const selectedEvents = events.slice(
         currentEventIndex,
         currentEventIndex + eventPerIteraction
       )
-      await event
-      .organizers()
-      .saveMany(selectedOrganizers)
+      await organizer
+      .events()
+      .saveMany(selectedEvents)
 
       currentEventIndex += eventPerIteraction
     }
