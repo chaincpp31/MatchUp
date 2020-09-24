@@ -1,3 +1,9 @@
+// module.exports = function organizerValidator (){
+//   return {
+//     error: undefined
+//   }
+// }
+
 const Validator = use("Validator")
 
 module.exports = async function organizerValidator (data) {
@@ -6,12 +12,12 @@ module.exports = async function organizerValidator (data) {
   const { name,user_name,password,first_name,last_name,email,phone_number,age,birth_day } = data
 
   const rules = {
-    name: 'required|unique:gamers,name',
+    name: 'required|unique:organizers,name',
     user_name: 'required',
     password: 'required|min:8',
     first_name: 'required',
     last_name: 'required',
-    email: 'required|email|unique:teachers,email',
+    email: 'required|email|unique:organizers,email',
     phone_number: 'required',
     age: 'required',
     birth_day: 'required'
@@ -19,9 +25,9 @@ module.exports = async function organizerValidator (data) {
 
   const validation = await Validator.validateAll({
     name,user_name,password,first_name,last_name,email,phone_number,age,birth_day
-  }, rules)
+  },rules)
 
   return {
-    error: validation.messages()
+    error:  validation.messages()
   }
 }
