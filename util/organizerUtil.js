@@ -33,7 +33,7 @@ class OrganizerUtil{
 }
   async create (organizerInstance, references) {
       const { organizer_id } = await this._Organizer.create(organizerInstance.body)
-      const organizer = this._Gamer
+      const organizer = this._Organizer
         .query()
         .where('organizer_id', organizer_id)
       return this._withReference(organizer, references)
