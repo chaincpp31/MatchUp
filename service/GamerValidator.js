@@ -11,9 +11,9 @@ module.exports = async function gamerValidator (data) {
     password: 'required|min:8',
     first_name: 'required',
     last_name: 'required',
-    email: 'required|email|unique:teachers,email',
+    email: 'required|email|unique:gamers,email',
     phone_number: 'required',
-    age: 'required',
+    age: 'required|number',
     birth_day: 'required'
   }
 
