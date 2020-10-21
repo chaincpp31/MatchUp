@@ -28,6 +28,7 @@
     "@adonisjs/vow": "^1.0.17",
     "@adonisjs/vow-browser": "^1.0.7",
     "mysql": "^2.18.1",
+    "node-sass": "^4.14.1",
     "sql": "^0.78.0",
     "sqlite3": "^5.0.0"
   },
