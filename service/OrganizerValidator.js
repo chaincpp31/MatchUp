@@ -1,3 +1,9 @@
+// module.exports = function organizerValidator (){
+//   return {
+//     error: undefined
+//   }
+// }
+
 const Validator = use("Validator")
 
 module.exports = async function organizerValidator (data) {
@@ -22,6 +28,6 @@ module.exports = async function organizerValidator (data) {
   }, rules)
 
   return {
-    error: validation.messages()
+    error:  validation.messages()
   }
 }

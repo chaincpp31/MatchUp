@@ -1,6 +1,8 @@
 'use strict'
 const Organizer = use('App/Models/Organizer')
 const OrganizerUtil = require("../../../util/organizerUtil")
+const OrganizerValidator = require("../../../service/OrganizerValidator")
+
 class OrganizerController {
     async index({ request }){
         const { references } = request.qs
