@@ -15,12 +15,12 @@ const Factory = use('Factory')
 
 class DatabaseSeeder {
   async run () {
-    const gamers = await Factory
-      .model('App/Models/Gamer')
+    const clients = await Factory
+      .model('App/Models/Clients')
       .createMany(10)
 
-    const organizers = await Factory
-    .model('App/Models/Organizer')
+    const eventsGamers = await Factory
+    .model('App/Models/EventsGamer')
     .createMany(10)
 
     const events = await Factory
@@ -31,31 +31,31 @@ class DatabaseSeeder {
     let currentEventIndex = 0;
     const eventPerIteraction = 2;
 
-    for (const organizer of organizers){
+    for (const eventsGamer of eventsGamers){
       const selectedEvents = events.slice(
         currentEventIndex,
         currentEventIndex + eventPerIteraction
       )
-      await organizer
+      await eventsGamer
       .events()
       .saveMany(selectedEvents)
 
       currentEventIndex += eventPerIteraction
     }
 
-      let currentGamerIndex = 0;
-      const gamerPerIteraction = 2;
+      let currentClientsIndex = 0;
+      const clientsPerIteraction = 2;
 
-      for (const gamer of gamers) {
-        const selectedGamers = events.slice(
-          currentGamerIndex,
-          currentGamerIndex + gamerPerIteraction
+      for (const client of clients) {
+        const selectedClients = events.slice(
+          currentClientsIndex,
+          currentClientsIndex + clientsPerIteraction
         )
-        await gamer
+        await client
           .events()
-          .saveMany(selectedGamers)
+          .saveMany(selectedClients)
 
-        currentGamerIndex += gamerPerIteraction
+        currentClientsIndex += clientsPerIteraction
     }
   }
 }
