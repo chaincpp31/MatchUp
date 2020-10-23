@@ -1,6 +1,7 @@
 'use strict'
 const Event = use('App/Models/Event')
 const EventUtil = require("../../../util/eventUtil")
+const Database = use('Database')
 class EventController {
     async index({ request }){
         const { references } = request.qs
@@ -40,7 +41,11 @@ class EventController {
         const event = await eventUtil.deleteById(request,references)
         return{ status: 200, error: undefined, data: event}
     }
-    
+
+    async status({request}){
+      return Database.select('*').from('events')
+    }
+
 }
 
 module.exports = EventController
