@@ -23,9 +23,11 @@ Route.get('/', () => {
 })
 
 Route.group(() =>{
-  Route.resource('/gamers','GamerController')
+  Route.resource('/clients','ClientsController')
   Route.resource('/organizers','OrganizerController')
   Route.resource('/events','EventController')
+
+  Route.get('/eventsGetStatus','EventController.status')
   Route.post('/login','AuthController.login')
 
 })
