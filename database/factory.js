@@ -1,6 +1,6 @@
 'use strict'
 
-const { first } = require('../app/Models/Gamer')
+const { first } = require('../app/Models/Clients')
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +16,7 @@ const { first } = require('../app/Models/Gamer')
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use('Factory')
 
-Factory.blueprint('App/Models/Gamer', (faker) => {
+Factory.blueprint('App/Models/Clients', (faker) => {
     return{
         name : faker.name(),
         user_name : faker.name(),
@@ -26,11 +26,12 @@ Factory.blueprint('App/Models/Gamer', (faker) => {
         email : faker.email(),
         phone_number : faker.phone(),
         age : faker.age(),
-        birth_day : faker.date()
+        birth_day : faker.date(),
+        status : faker.name()
 
     }
 })
-Factory.blueprint('App/Models/Organizer', (faker) =>{
+Factory.blueprint('App/Models/EventsGamer', (faker) =>{
     return{
         name: faker.name(),
         user_name: faker.name(),
@@ -45,8 +46,8 @@ Factory.blueprint('App/Models/Organizer', (faker) =>{
 })
 Factory.blueprint('App/Models/Event',(faker) =>{
     return{
-        name_event: faker.sentence(),
-        date_of_event: faker.date()
+        name_events: faker.sentence(),
+        date_event: faker.date()
     }
 })
 // const Factory = use('Factory')
