@@ -33,9 +33,9 @@ class GamerController {
 
   async update({ request }) {
     const { references = undefined } = request.qs;
-    const validatedData = await ClientValidator(request.body);
-    if (validatedData.error)
-      return { status: 422, error: validatedData.error, data: undefined };
+    // const validatedData = await ClientValidator(request.body);
+    // if (validatedData.error)
+    //   return { status: 422, error: validatedData.error, data: undefined };
 
     const clientUtil = new ClientsUtil(Clients);
     const client = await clientUtil.update(request, references);
