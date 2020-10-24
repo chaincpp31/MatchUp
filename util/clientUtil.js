@@ -35,9 +35,9 @@ class ClientUtil {
 
   async update(clientInstance, references) {
     const { id } = clientInstance.params;
-    if (!haveEvent) {
-      return { status: 500, error: `Not Found ${id}`, data: undefined };
-    }
+    // if (!haveEvent) {
+    //   return { status: 500, error: `Not Found ${id}`, data: undefined };
+    // }
     let clients = await this._Clients.find(id);
     if (!clients) {
       return { status: 500, error: `Not Found ${id}`, data: undefined };
@@ -45,7 +45,7 @@ class ClientUtil {
     clients.merge(clientInstance.body);
     await clients.save();
 
-    client = this._Clients.query().where({ clients_id: id });
+    const client = this._Clients.query().where({ clients_id: id });
     return this._withReference(client, references)
       .fetch()
       .then((response) => response.first());
