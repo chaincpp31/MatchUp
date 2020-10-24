@@ -24,10 +24,8 @@ Route.get('/', () => {
 
 Route.group(() =>{
   Route.resource('/clients','ClientsController')
-  Route.resource('/organizers','OrganizerController')
+  Route.resource('/eventgamers','EventGamerController')
   Route.resource('/events','EventController')
-
-  Route.get('/eventsGetStatus','EventController.status')
-  Route.post('/login','AuthController.login')
-
+  Route.post('/assets','AssetController.upload')
+  Route.get("/assets/:fileName","AssetController.show")
 })
