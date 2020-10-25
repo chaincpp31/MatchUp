@@ -17,7 +17,6 @@ class EventsSchema extends Schema {
         .onUpdate('CASCADE') // ON UPDATE CASCADE
 
 
-      table.timestamps()
     })
   }
 
