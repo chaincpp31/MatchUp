@@ -6,8 +6,8 @@ module.exports = async function clientValidator (data) {
   const { name,user_name,password,first_name,last_name,email,phone_number,age,birth_day,status,cover_img_url } = data
 
   const rules = {
-    name: 'required|unique:gamers,name',
-    user_name: 'required|unique',
+    name: 'required',
+    user_name: 'required',
     password: 'required|min:8',
     first_name: 'required',
     last_name: 'required',
