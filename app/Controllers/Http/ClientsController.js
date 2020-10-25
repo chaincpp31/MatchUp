@@ -2,7 +2,7 @@
 const Clients = use("App/Models/Clients");
 const ClientsUtil = require("../../../util/clientUtil");
 const ClientValidator = require("../../../service/ClientValidator");
-class GamerController {
+class ClientsController {
   async index({ request }) {
     const { references } = request.qs;
     const clientUtil = new ClientsUtil(Clients);
@@ -22,7 +22,6 @@ class GamerController {
   }
   async store({ request }) {
     const { name, clients_id } = request.body;
-    const { references } = request.qs;
     const validatedData = await ClientValidator(request.body);
     if (validatedData.error)
       return { status: 422, error: validatedData.error, data: undefined };
@@ -51,4 +50,4 @@ class GamerController {
 
 
 }
-module.exports = GamerController;
+module.exports = ClientsController;
