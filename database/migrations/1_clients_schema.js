@@ -16,8 +16,8 @@ class ClientsSchema extends Schema {
       table.integer("phone_number").notNullable()
       table.integer("age").notNullable()
       table.string("birth_day").notNullable()
-      table.integer("status").notNullable()
-      table.string("cover_image_url").notNullable()
+      table.string("status").notNullable()
+      // table.string("cover_image_url").notNullable()
       table.timestamps()
     })
   }
